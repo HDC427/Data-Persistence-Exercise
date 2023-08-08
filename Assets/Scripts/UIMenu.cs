@@ -14,11 +14,13 @@ public class UIMenu : MonoBehaviour
         if (Instance != null)
         {
             Destroy(gameObject);
+            Instance.gameObject.SetActive(true);
+            return;
         }
-        else
-        {
-            Instance = this;
-        }
+        
+        Instance = this;
+
+        DontDestroyOnLoad(gameObject);
     }
 
     // Update is called once per frame
@@ -30,6 +32,7 @@ public class UIMenu : MonoBehaviour
     public void StartGame()
     {
         playerName = nameInput.text;
+        gameObject.SetActive(false);
         SceneManager.LoadScene(1);
     }
 }
