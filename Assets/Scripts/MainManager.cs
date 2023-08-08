@@ -15,6 +15,7 @@ public class MainManager : MonoBehaviour
     
     private bool m_Started = false;
     private int m_Points;
+    private string playerName;
     
     private bool m_GameOver = false;
 
@@ -36,6 +37,9 @@ public class MainManager : MonoBehaviour
                 brick.onDestroyed.AddListener(AddPoint);
             }
         }
+
+        playerName = UIMenu.Instance.playerName;
+        ScoreText.text = playerName + $" Score : {m_Points}";
     }
 
     private void Update()
@@ -65,7 +69,7 @@ public class MainManager : MonoBehaviour
     void AddPoint(int point)
     {
         m_Points += point;
-        ScoreText.text = $"Score : {m_Points}";
+        ScoreText.text = playerName + $" Score : {m_Points}";
     }
 
     public void GameOver()
